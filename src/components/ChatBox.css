@@ -1,0 +1,49 @@
+/* ChatBox.css */
+.chat-box-container {
+    width: 95%;
+    margin: 20px auto;
+  }
+  
+  .chat-box {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .message {
+    max-width: 70%;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+    word-wrap: break-word;
+  }
+  
+  .user-message {
+    align-self: flex-end;
+    background-color: #4CAF50; /* Green for user messages */
+    color: white;
+  }
+  
+  .bot-message {
+    align-self: flex-start;
+    background-color: #008CBA; /* Blue for bot messages */
+    color: white;
+  }
+  
+  .input-container {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  input {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
