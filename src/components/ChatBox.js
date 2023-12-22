@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import './ChatBox.css';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
+import './ChatBox.css';
 
 const MAX_CONVERSATION_PAIRS = 1;
 
@@ -23,11 +24,11 @@ const ChatBox = () => {
           'https://indy-specialist.openai.azure.com/openai/deployments/Indy-Specialist/chat/completions?api-version=2023-07-01-preview',
           {
             messages: [
-              { role: 'system', content: 'Your name is HoosierHelper and you are an AI Assistant. You are an expert in all things related to Indianapolis and general knowledge.' },
+              { role: 'system', content: 'Your name is HoosierHelper and you are an AI Assistant. Your responses will be viewed within a chat bubble format. You are an expert in all things related to Indianapolis. Please format all responses in markdown.' },
               { role: 'user', content: inputValue },
             ],
             temperature: 0.7,
-            max_tokens: 50,
+            max_tokens: 350,
             top_p: 0.95,
             frequency_penalty: 0,
             presence_penalty: 0,
@@ -67,16 +68,12 @@ const ChatBox = () => {
     chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
   }, [conversation]);
 
-  // Conditional rendering of placeholder bot message
-  const renderPlaceholderBotMessage = () => {
-    if (conversation.length === 0) {
-      return (
-        <div className="message bot-message">
-          Hello! How can I help you?
-        </div>
-      );
-    }
-    return null;
+  const renderBotMessage = (botResponse) => {
+    return (
+      <div className={`message bot-message ${loading && conversation.length === 0 ? 'loading' : ''}`}>
+        <ReactMarkdown>{botResponse}</ReactMarkdown>
+      </div>
+    );
   };
 
   return (
@@ -86,15 +83,12 @@ const ChatBox = () => {
         <p>Ask our Hoosier expert anything else you'd like to know.</p>
       </div>
       <div className="chat-box" ref={chatBoxRef}>
-        {renderPlaceholderBotMessage()}
         {conversation.map((pair, index) => (
           <React.Fragment key={index}>
             <div className={`message user-message ${loading && index === conversation.length - 1 ? 'loading' : ''}`}>
               {loading && index === conversation.length - 1 ? '...' : pair.user}
             </div>
-            <div className={`message bot-message ${loading && index === conversation.length - 1 ? 'loading' : ''}`}>
-              {loading && index === conversation.length - 1 ? '...' : pair.bot}
-            </div>
+            {renderBotMessage(loading && index === conversation.length - 1 ? '...' : pair.bot)}
           </React.Fragment>
         ))}
         <div className="input-container">
@@ -105,7 +99,9 @@ const ChatBox = () => {
             onKeyDown={handleKeyDown}
             placeholder="Please enter your question..."
           />
-          <button className="send-button" onClick={handleSendMessage}>Send</button>
+          <button className="send-button" onClick={handleSendMessage}>
+            Send
+          </button>
         </div>
       </div>
     </div>

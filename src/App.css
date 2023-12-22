@@ -24,7 +24,7 @@ body {
 }
 
 .header h1 {
-  font-size: 4em; /* Adjust font size */
+  font-size: 16em; /* Adjust font size */
   color: #fff; /* Header text color */
   margin-bottom: 10px; /* Increase margin for spacing */
 }
@@ -67,6 +67,21 @@ body {
   height: auto; /* Expand the height on hover */
 }
 
+.activities-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.activities-header h2 {
+  font-size: 2.5em; /* Adjust the font size */
+  color: #fff; /* Text color */
+  margin-bottom: 10px; /* Increase margin for spacing */
+}
+
+.activities-header p {
+  font-size: 1.2em; /* Adjust the font size */
+  color: #ccc; /* Text color */
+}
 
 .thumbnail {
   width: 100%;
@@ -74,7 +89,6 @@ body {
   object-fit: cover;
   border: 1px solid #fff;
 }
-
 
 .placeholder-thumbnail {
   width: 100%;
@@ -95,10 +109,6 @@ body {
 .activities {
   background: linear-gradient(to bottom, #555, #444); /* Dark activities background gradient */
   padding: 40px 0;
-}
-
-.activities-header {
-  margin-bottom: 20px;
 }
 
 .footer {

@@ -84,7 +84,6 @@ const activitiesData = {
   ],
 };
 
-
 const ActivitiesSection = () => {
   const handleCardClick = (url) => {
     if (url) {
@@ -95,8 +94,8 @@ const ActivitiesSection = () => {
   return (
     <section className="activities">
       <div className="activities-header">
-        <h2>Visit Indy Today!</h2>
-        <p>Discover the vibrant attractions in Indianapolis</p>
+        <h2>Explore Indianapolis</h2>
+        <p>Discover the vibrant attractions in Indy and make the most of your visit!</p> {/* Updated text */}
       </div>
       <div className="activities-container">
         {Object.keys(activitiesData).map(category => (

@@ -44,11 +44,11 @@
 }
 
 input {
-  flex: 1;
+  flex: 2; /* Adjusted flex value to make it wider */
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  width: 90%;
+  width: 70%; /* Adjusted width */
 }
 
 .input-container {
@@ -61,15 +61,27 @@ input {
   box-sizing: border-box;
 }
 
-.input-container input,
-.input-container button {
+
+.input-container input {
   flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 80%;
   margin-right: 10px;
 }
 
-.button-container {
-  display: flex;
-  margin-top: 10px;
+.input-container button {
+  padding: 10px;
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.input-container button:hover {
+  background-color: #005678;
 }
 
 .send-button {
@@ -94,11 +106,11 @@ input {
   border-radius: 10px 10px 0 0;
 }
 
-.chat-header h2 {
+.chat-header h {
   margin-bottom: 10px;
 }
 
 .chat-header p {
   font-style: italic;
-  font-size: 14px;
+  font-size: 20px;
 }
