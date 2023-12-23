@@ -47,13 +47,13 @@
 .user-message {
   background-color: #2196F3;
   color: white;
-  align-self: flex-start;
+  align-self: flex-end;
 }
 
 .bot-message {
   background-color: #4CAF50;
   color: white;
-  align-self: flex-end;
+  align-self: flex-start;
 }
 
 .loading {

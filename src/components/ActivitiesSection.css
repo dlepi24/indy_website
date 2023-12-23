@@ -6,11 +6,11 @@
   
   .activity-card {
     box-sizing: border-box;
-    flex: 0 0 calc(33.33% - 20px); /* Adjust the margin/padding */
-    margin: 10px; /* Adjust the margin as needed */
-    border: 2px solid #FFA500; /* Orange border color */
-    padding: 15px; /* Adjust the padding as needed */
-    border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+    flex: 0 0 calc(33.33% - 20px);
+    margin: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
   }
   
   .activity-category {
@@ -26,7 +26,7 @@
     padding: 20px;
     margin-bottom: 20px;
     color: #333;
-    transition: background 0.3s ease, transform 0.5s ease, height 0.5s ease 0.3s, border 0.3s ease;
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -36,9 +36,9 @@
   }
   
   .activity-category .activity-card:hover {
-    background-color: #da6a22;
     transform: scale(1.01);
-    border: 2px solid #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 2px solid #FFA500;
     height: auto;
   }
   
@@ -77,13 +77,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Adjust the number of lines to show */
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    transition: -webkit-line-clamp 0.5s ease; /* Add transition for smooth effect */
+    transition: -webkit-line-clamp 0.5s ease;
   }
   
   .activity-card:hover .activity-details {
-    -webkit-line-clamp: unset; /* Show all lines on hover */
+    -webkit-line-clamp: unset;
   }
   
   .activities {
@@ -108,52 +108,64 @@
   }
   
   .activity-card:not(.selected) {
-    transform: none !important; /* Remove transform on unselected cards */
+    transform: none !important;
   }
   
   @media (max-width: 767px) {
-    .activity-card:not(.selected) {
-      transition: none; /* Remove transform transition on unselected cards for mobile */
+    .activity-card {
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 40px;
     }
-  }
   
-
-  .activity-category .activity-card:hover {
-    background-color: #da6a22;
-    transform: scale(1.01);
-    border: 2px solid #fff;
-  }
-
-  .activity-category .activity-card {
-    background-color: #fff;
-    border: 2px solid #da6a22;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    color: #333;
-    transition: transform 0.5s ease, background 0.3s ease, border 0.3s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-  }
+    .category-header {
+      display: flex;
+      overflow-x: auto;
+    }
   
+    .category-header h3 {
+      padding: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
   
-  /* Mobile click effect */
-  .activity-card.mobile-clicked {
-    background-color: #da6a22;
-    transform: scale(1.05); /* Adjust the scale as needed */
-    border: 2px solid #fff;
-    height: auto;
-  }
+    .category-header h3.selected {
+      background-color: #FFA500;
+      color: #fff;
+    }
   
-  /* Mobile "Visit Website" link */
-  .activity-card.mobile-clicked .website-button {
-    display: block;
-  }
+    .activity-card:hover {
+      transform: scale(1.01);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border: 2px solid #FFA500;
+    }
   
-  /* Hide "Visit Website" link by default */
-  .website-button {
-    display: none;
+    .activity-card {
+      background-color: #fff;
+      border: 2px solid #da6a22;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: #333;
+      transition: transform 0.5s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+    }
+  
+    .activity-card.mobile-clicked {
+      transform: scale(1.05);
+      border: 2px solid #FFA500;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      height: auto;
+    }
+  
+    .activity-card.mobile-clicked .website-button {
+      display: block;
+    }
+  
+    .website-button {
+      display: none;
+    }
   }
   
