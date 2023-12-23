@@ -120,3 +120,19 @@ body {
   padding: 10px;
   color: #fff;
 }
+
+.activity-card.selected {
+  background-color: #da6a22; /* Updated background color for selected card on mobile */
+  transform: scale(1.03);
+  border: 2px solid #fff; /* Updated border color for selected card on mobile */
+  height: auto;
+}
+
+.website-button {
+  background-color: #da6a22; /* Updated background color for the website button */
+  color: #fff;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}

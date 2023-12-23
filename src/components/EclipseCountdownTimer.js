@@ -34,14 +34,30 @@ const EclipseCountdownTimer = () => {
     <div className="eclipse-countdown">
       <h2>Total Eclipse Countdown</h2>
       <p className="countdown-text">
-        <span className="countdown-number">{countdown.days}</span>
-        <span className="countdown-separator">DAYS | </span>
-        <span className="countdown-number">{countdown.hours}</span>
-        <span className="countdown-separator">HOURS | </span>
-        <span className="countdown-number">{countdown.minutes}</span>
-        <span className="countdown-separator">MINUTES | </span>
-        <span className="countdown-number">{countdown.seconds}</span>
-        <span className="countdown-separator">SECONDS</span>
+        {countdown.days && (
+          <>
+            <span className="countdown-number">{countdown.days}</span>
+            <span className="countdown-label">DAYS</span>
+          </>
+        )}
+        {countdown.hours && (
+          <>
+            <span className="countdown-number">{countdown.hours}</span>
+            <span className="countdown-label">HOURS</span>
+          </>
+        )}
+        {countdown.minutes && (
+          <>
+            <span className="countdown-number">{countdown.minutes}</span>
+            <span className="countdown-label">MINUTES</span>
+          </>
+        )}
+        {countdown.seconds && (
+          <>
+            <span className="countdown-number">{countdown.seconds}</span>
+            <span className="countdown-label">SECONDS</span>
+          </>
+        )}
       </p>
       <img
         src="https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,q_75/v1/clients/indy/Eclipse_Map2024_10377fac-39b6-40fa-ab78-52b2e1d8e028.png"

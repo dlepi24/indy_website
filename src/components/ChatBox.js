@@ -24,7 +24,7 @@ const ChatBox = () => {
           'https://indy-specialist.openai.azure.com/openai/deployments/Indy-Specialist/chat/completions?api-version=2023-07-01-preview',
           {
             messages: [
-              { role: 'system', content: 'Your name is HoosierHelper and you are an AI Assistant. Your responses will be viewed within a chat bubble format. You are an expert in all things related to Indianapolis. Please format all responses in markdown.' },
+              { role: 'system', content: 'Your name is HoosierHelper and you are an AI Assistant. Your responses will be viewed within a chat bubble format. You are an expert in all things related to Indianapolis. Please format all responses in markdown and limit your options to 1 - 3 when listing items. Give good answers, but not overly lengthy. Please insert hyperlinks as often as possible like <a href="https://myawesome.link" target="_blank">my link</a>.'},
               { role: 'user', content: inputValue },
             ],
             temperature: 0.7,
@@ -83,6 +83,11 @@ const ChatBox = () => {
         <p>Ask our Hoosier expert anything else you'd like to know.</p>
       </div>
       <div className="chat-box" ref={chatBoxRef}>
+        {conversation.length === 0 && (
+          <div className="message bot-message">
+            <ReactMarkdown>Hi, what can I help you with?</ReactMarkdown>
+          </div>
+        )}
         {conversation.map((pair, index) => (
           <React.Fragment key={index}>
             <div className={`message user-message ${loading && index === conversation.length - 1 ? 'loading' : ''}`}>
@@ -91,18 +96,18 @@ const ChatBox = () => {
             {renderBotMessage(loading && index === conversation.length - 1 ? '...' : pair.bot)}
           </React.Fragment>
         ))}
-        <div className="input-container">
-          <input
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            placeholder="Please enter your question..."
-          />
-          <button className="send-button" onClick={handleSendMessage}>
-            Send
-          </button>
-        </div>
+      </div>
+      <div className="input-container">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          placeholder="Please enter your question..."
+        />
+        <button className="send-button" onClick={handleSendMessage}>
+          Send
+        </button>
       </div>
     </div>
   );

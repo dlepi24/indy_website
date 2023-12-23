@@ -1,5 +1,6 @@
+
 // ActivitiesSection.js
-import React from 'react';
+import React, { useState } from 'react';
 import EclipseCountdownTimer from './EclipseCountdownTimer';
 
 const activitiesData = {
@@ -86,40 +87,62 @@ const activitiesData = {
 };
 
 const ActivitiesSection = () => {
+  const [selectedCard, setSelectedCard] = useState(null);
+
   const handleCardClick = (url) => {
-    if (url) {
+    if (url && selectedCard !== null) {
       window.open(url, '_blank'); // Open URL in a new tab
     }
+  };
+  
+
+  const handleCardSelect = (index) => {
+    setSelectedCard(index);
+  };
+
+  const renderCardContent = (activity, index) => {
+    const isSelected = index === selectedCard;
+
+    return (
+      <>
+        {activity.thumbnail ? (
+          <img
+            src={activity.thumbnail}
+            alt={`Thumbnail for ${activity.name}`}
+            className={`thumbnail ${isSelected ? 'selected' : ''}`}
+          />
+        ) : (
+          <div className={`placeholder-thumbnail ${isSelected ? 'selected' : ''}`} />
+        )}
+        <h4>{activity.name}</h4>
+        <p className="activity-details">{activity.details}</p>
+        {isSelected && (
+          <button className="website-button" onClick={() => handleCardClick(activity.url)}>
+            Visit Website
+          </button>
+        )}
+      </>
+    );
   };
 
   return (
     <section className="activities">
-      <EclipseCountdownTimer /> {/* Include the countdown timer */}
+      <EclipseCountdownTimer />
       <div className="activities-header">
         <h2>Explore Indianapolis</h2>
         <p>Discover the vibrant attractions in Indy and make the most of your visit!</p>
       </div>
       <div className="activities-container">
-        {Object.keys(activitiesData).map(category => (
+        {Object.keys(activitiesData).map((category) => (
           <div key={category} className="activity-category">
             <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
-            {activitiesData[category].map(activity => (
+            {activitiesData[category].map((activity, index) => (
               <div
                 key={activity.name}
-                className="activity-card"
-                onClick={() => handleCardClick(activity.url)}
+                className={`activity-card ${selectedCard === index ? 'selected' : ''}`}
+                onClick={() => handleCardSelect(index)}
               >
-                {activity.thumbnail ? (
-                  <img
-                    src={activity.thumbnail}
-                    alt={`Thumbnail for ${activity.name}`}
-                    className="thumbnail"
-                  />
-                ) : (
-                  <div className="placeholder-thumbnail" />
-                )}
-                <h4>{activity.name}</h4>
-                <p className="activity-details">{activity.details}</p>
+                {renderCardContent(activity, index)}
               </div>
             ))}
           </div>
