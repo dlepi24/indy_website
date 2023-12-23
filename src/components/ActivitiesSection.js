@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import EclipseCountdownTimer from './EclipseCountdownTimer';
-import activitiesData from './ActivityData'; // Import the activity data component
+import activitiesData from './ActivityData';
 import './ActivitiesSection.css';
 
 const ActivitiesSection = () => {
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCards, setSelectedCards] = useState({});
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
 
@@ -23,29 +23,33 @@ const ActivitiesSection = () => {
   const handleCardClick = (url) => {
     if (url) {
       window.open(url, '_blank');
+      // Reset selected cards on mobile
+      if (isMobile) {
+        setSelectedCards({});
+      }
     }
   };
 
-  const handleCardSelect = (index, activity) => {
-    setSelectedCard((prevSelected) => (prevSelected === index ? null : index));
+  const handleCardSelect = (category, index, activity) => {
+    // Open the URL
     handleCardClick(activity.url);
   };
 
-  const renderCardContent = (activity, index, isSelected) => {
+  const renderCardContent = (activity, index, category) => {
     return (
       <>
         {activity.thumbnail ? (
           <img
             src={activity.thumbnail}
             alt={`Thumbnail for ${activity.name}`}
-            className={`thumbnail ${isSelected ? 'selected' : ''}`}
+            className={`thumbnail`}
           />
         ) : (
-          <div className={`placeholder-thumbnail ${isSelected ? 'selected' : ''}`} />
+          <div className={`placeholder-thumbnail`} />
         )}
         <h4>{activity.name}</h4>
         <p className="activity-details">{activity.details}</p>
-        {isSelected && (
+        {isMobile && (
           <button className="website-button" onClick={() => handleCardClick(activity.url)}>
             Visit Website
           </button>
@@ -80,10 +84,10 @@ const ActivitiesSection = () => {
                 {activitiesData[selectedCategory].map((activity, index) => (
                   <div
                     key={activity.name}
-                    className={`activity-card ${index === selectedCard ? 'selected' : ''}`}
-                    onClick={() => handleCardSelect(index, activity)}
+                    className={`activity-card`}
+                    onClick={() => handleCardSelect(selectedCategory, index, activity)}
                   >
-                    {renderCardContent(activity, index, index === selectedCard)}
+                    {renderCardContent(activity, index, selectedCategory)}
                   </div>
                 ))}
               </div>
@@ -98,10 +102,10 @@ const ActivitiesSection = () => {
                 {activitiesData[category].map((activity, index) => (
                   <div
                     key={activity.name}
-                    className={`activity-card ${index === selectedCard ? 'selected' : ''}`}
-                    onClick={() => handleCardSelect(index, activity)}
+                    className={`activity-card`}
+                    onClick={() => handleCardSelect(category, index, activity)}
                   >
-                    {renderCardContent(activity, index, index === selectedCard)}
+                    {renderCardContent(activity, index, category)}
                   </div>
                 ))}
               </div>

@@ -16,15 +16,15 @@ const EclipseCountdownTimer = () => {
     const updateCountdown = () => {
       const now = new Date().getTime();
       const timeDifference = eclipseDate - now;
-
-      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
+    
+      const days = Math.max(Math.floor(timeDifference / (1000 * 60 * 60 * 24)), 0);
+      const hours = Math.max(Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)), 0);
+      const minutes = Math.max(Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60)), 0);
+      const seconds = Math.max(Math.floor((timeDifference % (1000 * 60)) / 1000), 0);
+    
       setCountdown({ days, hours, minutes, seconds });
     };
-
+    
     const countdownInterval = setInterval(updateCountdown, 1000);
 
     return () => clearInterval(countdownInterval);
@@ -34,27 +34,33 @@ const EclipseCountdownTimer = () => {
     <div className="eclipse-countdown">
       <h2>Total Eclipse Countdown</h2>
       <p className="countdown-text">
-        {countdown.days && (
+        {countdown.days > 0 && (
           <>
             <span className="countdown-number">{countdown.days}</span>
             <span className="countdown-label">DAYS</span>
           </>
         )}
-        {countdown.hours && (
+        {countdown.hours > 0 && (
           <>
             <span className="countdown-number">{countdown.hours}</span>
             <span className="countdown-label">HOURS</span>
           </>
         )}
-        {countdown.minutes && (
+        {countdown.minutes > 0 && (
           <>
             <span className="countdown-number">{countdown.minutes}</span>
             <span className="countdown-label">MINUTES</span>
           </>
         )}
-        {countdown.seconds && (
+        {countdown.seconds > 0 && (
           <>
             <span className="countdown-number">{countdown.seconds}</span>
+            <span className="countdown-label">SECONDS</span>
+          </>
+        )}
+        {countdown.days === 0 && countdown.hours === 0 && countdown.minutes === 0 && countdown.seconds === 0 && (
+          <>
+            <span className="countdown-number">0</span>
             <span className="countdown-label">SECONDS</span>
           </>
         )}
