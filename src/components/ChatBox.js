@@ -105,9 +105,6 @@ const ChatBox = () => {
           onKeyDown={handleKeyDown}
           placeholder="Please enter your question..."
         />
-        <button className="send-button" onClick={handleSendMessage}>
-          Send
-        </button>
       </div>
     </div>
   );

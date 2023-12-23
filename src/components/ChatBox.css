@@ -7,9 +7,25 @@
   border-radius: 10px;
   overflow: hidden;
   background-color: #fff;
-  border: 2px solid #da6a22; /* Add border */
+  border: 5px solid #da6a22; /* Add border */
   display: flex;
   flex-direction: column;
+}
+
+.chat-header {
+  padding: 20px;
+  background-color: #da6a22;
+  color: white;
+  text-align: center;
+}
+
+.chat-header h2 {
+  margin-bottom: 10px;
+}
+
+.chat-header p {
+  font-style: italic;
+  font-size: 20px;
 }
 
 .chat-box {
@@ -48,11 +64,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 10px;
+  padding-top: 6px;
   background-color: #da6a22;
-  border-radius: 0 0 10px 10px;
   box-sizing: border-box;
-  border-top: 2px solid #da6a22; /* Add top border */
 }
 
 .input-container input {

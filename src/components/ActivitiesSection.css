@@ -1,0 +1,159 @@
+.activities-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .activity-card {
+    box-sizing: border-box;
+    flex: 0 0 calc(33.33% - 20px); /* Adjust the margin/padding */
+    margin: 10px; /* Adjust the margin as needed */
+    border: 2px solid #FFA500; /* Orange border color */
+    padding: 15px; /* Adjust the padding as needed */
+    border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+  }
+  
+  .activity-category {
+    flex: 1;
+    max-width: 300px;
+    margin: 10px;
+  }
+  
+  .activity-category .activity-card {
+    background-color: #fff;
+    border: 2px solid #da6a22;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    color: #333;
+    transition: background 0.3s ease, transform 0.5s ease, height 0.5s ease 0.3s, border 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 400px;
+    overflow: hidden;
+  }
+  
+  .activity-category .activity-card:hover {
+    background-color: #da6a22;
+    transform: scale(1.01);
+    border: 2px solid #fff;
+    height: auto;
+  }
+  
+  .activities-header {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .activities-header h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .activities-header p {
+    font-weight: bolder;
+    color: #da6a22;
+    padding: 5px;
+  }
+  
+  .thumbnail {
+    width: 100%;
+    height: 40%;
+    object-fit: cover;
+    border: 2px solid #da6a22;
+  }
+  
+  .placeholder-thumbnail {
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    margin-bottom: 10px;
+  }
+  
+  .activity-details {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Adjust the number of lines to show */
+    -webkit-box-orient: vertical;
+    transition: -webkit-line-clamp 0.5s ease; /* Add transition for smooth effect */
+  }
+  
+  .activity-card:hover .activity-details {
+    -webkit-line-clamp: unset; /* Show all lines on hover */
+  }
+  
+  .activities {
+    background: #fff;
+    padding: 40px 0;
+  }
+  
+  .activity-card.selected {
+    background-color: #da6a22;
+    transform: scale(1.01);
+    border: 2px solid #fff;
+    height: auto;
+  }
+  
+  .website-button {
+    background-color: #da6a22;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .activity-card:not(.selected) {
+    transform: none !important; /* Remove transform on unselected cards */
+  }
+  
+  @media (max-width: 767px) {
+    .activity-card:not(.selected) {
+      transition: none; /* Remove transform transition on unselected cards for mobile */
+    }
+  }
+  
+
+  .activity-category .activity-card:hover {
+    background-color: #da6a22;
+    transform: scale(1.01);
+    border: 2px solid #fff;
+  }
+
+  .activity-category .activity-card {
+    background-color: #fff;
+    border: 2px solid #da6a22;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    color: #333;
+    transition: transform 0.5s ease, background 0.3s ease, border 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  
+  /* Mobile click effect */
+  .activity-card.mobile-clicked {
+    background-color: #da6a22;
+    transform: scale(1.05); /* Adjust the scale as needed */
+    border: 2px solid #fff;
+    height: auto;
+  }
+  
+  /* Mobile "Visit Website" link */
+  .activity-card.mobile-clicked .website-button {
+    display: block;
+  }
+  
+  /* Hide "Visit Website" link by default */
+  .website-button {
+    display: none;
+  }
+  
