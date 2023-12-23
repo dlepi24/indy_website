@@ -4,7 +4,6 @@ import activitiesData from './ActivityData';
 import './ActivitiesSection.css';
 
 const ActivitiesSection = () => {
-  const [selectedCards, setSelectedCards] = useState({});
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
 
@@ -23,19 +22,19 @@ const ActivitiesSection = () => {
   const handleCardClick = (url) => {
     if (url) {
       window.open(url, '_blank');
-      // Reset selected cards on mobile
+      // Reset selected category on mobile
       if (isMobile) {
-        setSelectedCards({});
+        setSelectedCategory(null);
       }
     }
   };
 
-  const handleCardSelect = (category, index, activity) => {
+  const handleCardSelect = (category, activity) => {
     // Open the URL
     handleCardClick(activity.url);
   };
 
-  const renderCardContent = (activity, index, category) => {
+  const renderCardContent = (activity, category) => {
     return (
       <>
         {activity.thumbnail ? (
@@ -85,9 +84,9 @@ const ActivitiesSection = () => {
                   <div
                     key={activity.name}
                     className={`activity-card`}
-                    onClick={() => handleCardSelect(selectedCategory, index, activity)}
+                    onClick={() => handleCardSelect(selectedCategory, activity)}
                   >
-                    {renderCardContent(activity, index, selectedCategory)}
+                    {renderCardContent(activity, selectedCategory)}
                   </div>
                 ))}
               </div>
@@ -103,9 +102,9 @@ const ActivitiesSection = () => {
                   <div
                     key={activity.name}
                     className={`activity-card`}
-                    onClick={() => handleCardSelect(category, index, activity)}
+                    onClick={() => handleCardSelect(category, activity)}
                   >
-                    {renderCardContent(activity, index, category)}
+                    {renderCardContent(activity, category)}
                   </div>
                 ))}
               </div>

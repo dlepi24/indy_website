@@ -24,7 +24,7 @@ const ChatBox = () => {
           'https://indy-specialist.openai.azure.com/openai/deployments/Indy-Specialist/chat/completions?api-version=2023-07-01-preview',
           {
             messages: [
-              { role: 'system', content: 'Your name is HoosierHelper and you are an AI Assistant. Your responses will be viewed within a chat bubble format. You are an expert in all things related to Indianapolis. Please format all responses in markdown and limit your options to 1 - 3 when listing items. Give good answers, but not overly lengthy. Please insert hyperlinks as often as possible like <a href="https://myawesome.link" target="_blank">my link</a>.' },
+              { role: 'system', content: 'Your name is HoosierHelper and you are an AI Assistant. Your responses will be viewed within a chat bubble format. You are an expert in all things related to Indianapolis. Please format all responses in markdown and limit your options to 1 - 3 when listing items. Give good answers, but not overly lengthy. Please insert hyperlinks as often as possible in your responses for information and use the target="_blank" property so that they open in a new tab' },
               { role: 'user', content: inputValue },
             ],
             temperature: 0.7,
