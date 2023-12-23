@@ -1,5 +1,6 @@
 // ActivitiesSection.js
 import React from 'react';
+import EclipseCountdownTimer from './EclipseCountdownTimer';
 
 const activitiesData = {
   food: [
@@ -93,9 +94,10 @@ const ActivitiesSection = () => {
 
   return (
     <section className="activities">
+      <EclipseCountdownTimer /> {/* Include the countdown timer */}
       <div className="activities-header">
         <h2>Explore Indianapolis</h2>
-        <p>Discover the vibrant attractions in Indy and make the most of your visit!</p> {/* Updated text */}
+        <p>Discover the vibrant attractions in Indy and make the most of your visit!</p>
       </div>
       <div className="activities-container">
         {Object.keys(activitiesData).map(category => (
